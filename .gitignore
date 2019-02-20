@@ -1,0 +1,10 @@
+.gradle
+/build/
+/bin/
+!gradle/wrapper/gradle-wrapper.jar
+
+### ECLIPSE ###
+.classpath
+.project
+.settings
+

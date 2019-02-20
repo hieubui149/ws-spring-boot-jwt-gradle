@@ -1,0 +1,37 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.2.RELEASE'
+	id 'java'
+	id 'eclipse'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.cjo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.postgresql:postgresql:42.2.5'
+	implementation 'com.zaxxer:HikariCP:3.3.1'
+	implementation 'com.auth0:java-jwt:3.7.0'
+	
+	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+}
+
+configurations.all {
+	exclude group: 'org.springframework.boot', module: "spring-boot-starter-logging"
+    exclude group: 'ch.qos.logback'
+}
+
