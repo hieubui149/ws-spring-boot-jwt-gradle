@@ -14,6 +14,17 @@ import com.cjo.mpos.auth.repository.UserRoleCRUDRepository;
 import com.cjo.mpos.common.BaseService;
 import com.cjo.mpos.common.exception.UserException;
 
+/**
+ * 
+ * The class AuthService<br>
+ * <br>
+ * A service to handle all authentication logic .<br>
+ * <br>
+ * @author Tomas
+ * @version 1.0
+ * @since Feb 20, 2019
+ *
+ */
 @Service
 public class AuthService extends BaseService {
 

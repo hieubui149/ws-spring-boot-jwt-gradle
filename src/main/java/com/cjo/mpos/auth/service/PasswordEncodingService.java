@@ -6,6 +6,17 @@ import org.springframework.stereotype.Service;
 
 import com.cjo.mpos.common.BaseService;
 
+/**
+ * 
+ * The class PasswordEncodingService<br>
+ * <br>
+ * Password encoder service .<br>
+ * <br>
+ * @author Tomas
+ * @version 1.0
+ * @since Feb 20, 2019
+ *
+ */
 @Service
 public class PasswordEncodingService extends BaseService {
 

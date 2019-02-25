@@ -1,17 +1,36 @@
-plugins {
-	id 'org.springframework.boot' version '2.1.2.RELEASE'
-	id 'java'
-	id 'eclipse'
+buildscript {
+	ext {
+		springBootVersion = '2.0.2.RELEASE'
+		wrapperVersion = '1.0.22.BUILD-SNAPSHOT'
+	}
+	repositories {
+		mavenLocal()
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot.experimental:spring-boot-thin-gradle-plugin:${wrapperVersion}")
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
 }
 
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+apply plugin: 'eclipse'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'org.springframework.boot.experimental.thin-launcher'
 
 group = 'com.cjo'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
+	mavenLocal()
 	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
 }
 
 dependencies {
@@ -22,6 +41,8 @@ dependencies {
 	implementation 'org.postgresql:postgresql:42.2.5'
 	implementation 'com.zaxxer:HikariCP:3.3.1'
 	implementation 'com.auth0:java-jwt:3.7.0'
+	implementation 'com.hazelcast:hazelcast:3.11.2'
+	implementation 'com.hazelcast:hazelcast-spring:3.11.2'
 	
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation'org.springframework.boot:spring-boot-starter-test'
@@ -35,3 +56,22 @@ configurations.all {
     exclude group: 'ch.qos.logback'
 }
 
+bootJar {
+	classifier = 'boot'
+	manifest {
+		attributes 'Marker': 'Boot'
+	}
+}
+
+thinResolvePrepare {
+	into new File("dist/")
+}
+
+// This is necessary in order to generate a pom.xml
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+}

@@ -19,6 +19,17 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.cjo.mpos.common.domain.Response;
 import com.cjo.mpos.common.exception.UserException;
 
+/**
+ * 
+ * The class ErrorController<br>
+ * <br>
+ * Catch all uncaught error around the application.<br>
+ * <br>
+ * @author Tomas
+ * @version 1.0
+ * @since Feb 20, 2019
+ *
+ */
 @ControllerAdvice
 public class ErrorController extends ResponseEntityExceptionHandler {
 
@@ -42,6 +53,16 @@ public class ErrorController extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<Object>(new Response(code, message), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
+	/**
+	 * 
+	 * Catch defined exception and customize its look <br>
+	 * <br>
+	 * @param ex
+	 * @param request
+	 * @return
+	 * @author Tomas
+	 * @since Feb 20, 2019
+	 */
 	@ExceptionHandler({ UserException.class })
 	public ResponseEntity<Object> handleApplicationExceptionInternal(final RuntimeException ex, final WebRequest request) {
 		return new ResponseEntity<Object>(new Response(HttpStatus.BAD_REQUEST.value(), ex.getMessage()), HttpStatus.OK);

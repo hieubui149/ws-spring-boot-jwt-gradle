@@ -17,6 +17,17 @@ import org.springframework.web.filter.GenericFilterBean;
 import com.cjo.mpos.auth.domain.Token;
 import com.cjo.mpos.auth.service.JWTAuthenticateService;
 
+/**
+ * 
+ * The class ApiAuthenticationFilter<br>
+ * <br>
+ * Filter for checking access token.<br>
+ * <br>
+ * @author Tomas
+ * @version 1.0
+ * @since Feb 20, 2019
+ *
+ */
 @Component
 public class ApiAuthenticationFilter extends GenericFilterBean {
 

@@ -7,6 +7,16 @@ import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.algorithms.Algorithm;
 
+/**
+ * 
+ * The class JWTConfig<br>
+ * <br>
+ * <br>
+ * @author Tomas
+ * @version 1.0
+ * @since Feb 20, 2019
+ *
+ */
 @Component
 public class JWTConfig {
 	

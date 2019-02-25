@@ -13,6 +13,17 @@ import org.springframework.security.web.authentication.AnonymousAuthenticationFi
 
 import com.cjo.mpos.auth.filter.ApiAuthenticationFilter;
 
+/**
+ * 
+ * The class SecurityCredentialsConfig<br>
+ * <br>
+ * Setup a configuration for Spring Security.<br>
+ * <br>
+ * @author Tomas
+ * @version 1.0
+ * @since Feb 20, 2019
+ *
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -21,6 +32,9 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private ApiAuthenticationFilter apiAuthenticationFilter;
 	
+	/**
+	 * Override default configuration
+	 */
 	public SecurityCredentialsConfig() {
 		super(true);
 	}

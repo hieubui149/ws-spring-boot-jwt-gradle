@@ -1,5 +1,15 @@
 package com.cjo.mpos.auth.domain;
 
+/**
+ * 
+ * The class Role<br>
+ * <br>
+ * <br>
+ * @author Tomas
+ * @version 1.0
+ * @since Feb 20, 2019
+ *
+ */
 public enum Role {
 
 	ROLE_USER("ROLE_USER"),

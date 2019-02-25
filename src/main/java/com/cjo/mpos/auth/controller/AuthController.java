@@ -16,6 +16,17 @@ import com.cjo.mpos.auth.service.AuthService;
 import com.cjo.mpos.common.BaseController;
 import com.cjo.mpos.common.domain.Response;
 
+/**
+ * 
+ * The class AuthController<br>
+ * <br>
+ * An enpoints for application authentication.<br>
+ * <br>
+ * @author Tomas
+ * @version 1.0
+ * @since Feb 20, 2019
+ *
+ */
 @RestController
 @RequestMapping("mpos/v1/auth")
 public class AuthController extends BaseController {

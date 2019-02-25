@@ -3,6 +3,7 @@ package com.cjo.mpos.auth.service;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -21,11 +22,20 @@ import com.cjo.mpos.auth.JWTClaimer;
 import com.cjo.mpos.auth.domain.JWTConfig;
 import com.cjo.mpos.auth.domain.JWTPayload;
 import com.cjo.mpos.auth.token.AbstractRoleAuthenticatedToken;
-import com.cjo.mpos.auth.token.AdminAuthenticatedToken;
 import com.cjo.mpos.auth.token.IRoleAuthenticatedTokenFactory;
-import com.cjo.mpos.auth.token.UserAuthenticatedToken;
 import com.cjo.mpos.common.BaseService;
 
+/**
+ * 
+ * The class JWTAuthenticateService<br>
+ * <br>
+ * A service to handle things related to jwt .<br>
+ * <br>
+ * @author Tomas
+ * @version 1.0
+ * @since Feb 20, 2019
+ *
+ */
 @Service
 public class JWTAuthenticateService extends BaseService {
 
@@ -34,6 +44,9 @@ public class JWTAuthenticateService extends BaseService {
 	@Autowired
 	private JWTConfig jwtConfig;
 
+	@Autowired
+	private Set<IRoleAuthenticatedTokenFactory> roleAuthenticationFactories;
+	
 	private Map<String, IRoleAuthenticatedTokenFactory> roleAuthenticatedTokenFactories;
 
 	@PostConstruct
@@ -41,8 +54,9 @@ public class JWTAuthenticateService extends BaseService {
 		verifier = JWT.require(jwtConfig.getAlgorithm()).withIssuer(jwtConfig.getIssuer()).build();
 
 		roleAuthenticatedTokenFactories = new HashMap<>();
-		roleAuthenticatedTokenFactories.put("ROLE_USER", new UserAuthenticatedToken.UserAuthenticatedTokenFactory());
-		roleAuthenticatedTokenFactories.put("ROLE_ADMIN", new AdminAuthenticatedToken.AdminAuthenticatedTokenFactory());
+		for (IRoleAuthenticatedTokenFactory element : roleAuthenticationFactories) {
+			roleAuthenticatedTokenFactories.put(element.getPresentedRole().role, element);
+		}
 	}
 
 	public final Optional<String> createToken(final String email, JWTPayload payload) {

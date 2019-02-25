@@ -1,5 +1,6 @@
 package com.cjo.mpos.auth.token;
 
+import com.cjo.mpos.auth.domain.Role;
 import com.cjo.mpos.auth.principal.AdminPrincipal;
 
 public class AdminAuthenticatedToken extends AbstractRoleAuthenticatedToken {
@@ -19,6 +20,12 @@ public class AdminAuthenticatedToken extends AbstractRoleAuthenticatedToken {
 		public AbstractRoleAuthenticatedToken getAuthenticatedToken(final String id, final String token) {
 			return new AdminAuthenticatedToken(new AdminPrincipal(id, token));
 		}
+
+		@Override
+		public Role getPresentedRole() {
+			return Role.ROLE_ADMIN;
+		}
+		
 	}
 	
 }

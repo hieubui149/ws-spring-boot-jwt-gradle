@@ -1,5 +1,16 @@
 package com.cjo.mpos.common.domain;
 
+/**
+ * 
+ * The class Response<br>
+ * <br>
+ * Wrap http response in application looks <br>
+ * <br>
+ * @author Tomas
+ * @version 1.0
+ * @since Feb 20, 2019
+ *
+ */
 public class Response {
 	
 	public final int code;

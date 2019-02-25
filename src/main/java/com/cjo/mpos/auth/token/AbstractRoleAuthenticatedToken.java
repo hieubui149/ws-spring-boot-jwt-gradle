@@ -10,11 +10,19 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import com.cjo.mpos.auth.principal.IPrincipal;
 
+/**
+ * 
+ * The class AbstractRoleAuthenticatedToken<br>
+ * <br>
+ * Defined a base authentication token for traveling inside application.<br>
+ * <br>
+ * @author Tomas
+ * @version 1.0
+ * @since Feb 20, 2019
+ *
+ */
 public abstract class AbstractRoleAuthenticatedToken implements Authentication {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8002258688206667598L;
 	
 	private IPrincipal principal;

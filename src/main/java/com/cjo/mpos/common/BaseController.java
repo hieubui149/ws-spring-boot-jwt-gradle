@@ -8,6 +8,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cjo.mpos.common.domain.Response;
 
+/**
+ * 
+ * The class BaseController<br>
+ * <br>
+ * Define some utilities and useful function for derived controller.<br>
+ * <br>
+ * @author Tomas
+ * @version 1.0
+ * @since Feb 20, 2019
+ *
+ */
 @Transactional
 public class BaseController {
 
