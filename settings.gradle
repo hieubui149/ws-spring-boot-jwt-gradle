@@ -3,4 +3,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'mpos'
+rootProject.name = 'ws-springboot-jwt-starter'
