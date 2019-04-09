@@ -47,13 +47,12 @@ public class JWTAuthenticateService extends BaseService {
 	@Autowired
 	private Set<IRoleAuthenticatedTokenFactory> roleAuthenticationFactories;
 	
-	private Map<String, IRoleAuthenticatedTokenFactory> roleAuthenticatedTokenFactories;
+	private Map<String, IRoleAuthenticatedTokenFactory> roleAuthenticatedTokenFactories = new HashMap<>();
 
 	@PostConstruct
 	public void init() {
 		verifier = JWT.require(jwtConfig.getAlgorithm()).withIssuer(jwtConfig.getIssuer()).build();
 
-		roleAuthenticatedTokenFactories = new HashMap<>();
 		for (IRoleAuthenticatedTokenFactory element : roleAuthenticationFactories) {
 			roleAuthenticatedTokenFactories.put(element.getPresentedRole().role, element);
 		}

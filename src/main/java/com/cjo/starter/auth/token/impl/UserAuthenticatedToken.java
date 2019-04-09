@@ -1,7 +1,9 @@
-package com.cjo.starter.auth.token;
+package com.cjo.starter.auth.token.impl;
 
 import com.cjo.starter.auth.domain.Role;
 import com.cjo.starter.auth.principal.UserPrincipal;
+import com.cjo.starter.auth.token.AbstractRoleAuthenticatedToken;
+import com.cjo.starter.auth.token.IRoleAuthenticatedTokenFactory;
 
 public class UserAuthenticatedToken extends AbstractRoleAuthenticatedToken {
 

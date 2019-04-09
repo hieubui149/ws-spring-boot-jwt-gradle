@@ -61,7 +61,7 @@ public class AuthService extends BaseService {
 		}
 	}
 
-	public String login(final String email, final String password) throws UserException {
+	public String signin(final String email, final String password) throws UserException {
 		List<User> users = userRepository.findByEmail(email);
 		if (users.isEmpty()) {
 			throw new UserException("Username or password does not match");

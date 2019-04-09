@@ -49,7 +49,7 @@ public class AuthController extends BaseController {
 			return badRequest("email", "password");
 		}
 		
-		String token = authService.login(email, password);
+		String token = authService.signin(email, password);
 		if (token != null) {
 			return success(token);
 		} else {

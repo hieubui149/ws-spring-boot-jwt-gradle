@@ -4,11 +4,11 @@ import com.cjo.starter.auth.domain.Role;
 
 public class UserPrincipal implements IPrincipal {
 
-	public final String mbrId;
+	public final String userId;
 	public final String token;
 	
-	public UserPrincipal(final String mbrId, final String token) {
-		this.mbrId = mbrId;
+	public UserPrincipal(final String userId, final String token) {
+		this.userId = userId;
 		this.token = token;
 	}
 	
