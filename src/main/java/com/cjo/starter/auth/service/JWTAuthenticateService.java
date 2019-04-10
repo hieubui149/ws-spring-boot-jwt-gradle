@@ -19,6 +19,7 @@ import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.cjo.starter.auth.JWTClaimer;
+import com.cjo.starter.auth.JWTClaimer.ClaimContent;
 import com.cjo.starter.auth.domain.JWTConfig;
 import com.cjo.starter.auth.domain.JWTPayload;
 import com.cjo.starter.auth.token.AbstractRoleAuthenticatedToken;
@@ -79,8 +80,8 @@ public class JWTAuthenticateService extends BaseService {
 	}
 
 	private AbstractRoleAuthenticatedToken getAuthenticationToken(DecodedJWT jwt, final String token) {
-		String id = jwt.getClaim("email").asString();
-		String role = jwt.getClaim("role").asString();
+		String id = jwt.getClaim(ClaimContent.email.name()).asString();
+		String role = jwt.getClaim(ClaimContent.role.name()).asString();
 		return getAutenticationTokenFactory(role).getAuthenticatedToken(id, token);
 	}
 
