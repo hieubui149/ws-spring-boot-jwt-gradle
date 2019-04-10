@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,7 @@ import com.cjo.starter.common.domain.Response;
 public class AuthController extends BaseController {
 
 //	private static final Logger LOGGER = LogManager.getLogger(AuthController.class);
+	private static final String REGEX_EMAIL_PATTERN = "^[a-zA-Z0-9.]*\\\\@[a-zA-Z0-9]*\\\\.[a-z]*$";
 	
 	@Autowired
 	private AuthService authService;
@@ -39,9 +41,7 @@ public class AuthController extends BaseController {
 		final String email = body.get("email");
 		final String password = body.get("password");
 		
-		// validate email
-		String validatedEmailPattern = "^[a-zA-Z0-9.]*\\@[a-zA-Z0-9]*\\.[a-z]*$";
-		if (StringUtils.isEmpty(email) || !email.matches(validatedEmailPattern)) { 
+		if (StringUtils.isEmpty(email) || !email.matches(REGEX_EMAIL_PATTERN)) { 
 			return badRequest("email", "password");
 		}
 		
@@ -62,9 +62,7 @@ public class AuthController extends BaseController {
 		final String email = body.get("email");
 		final String password = body.get("password");
 		
-		// validate email
-		String validatedEmailPattern = "^[a-zA-Z0-9.]*\\@[a-zA-Z0-9]*\\.[a-z]*$";
-		if (StringUtils.isEmpty(email) || !email.matches(validatedEmailPattern)) { 
+		if (StringUtils.isEmpty(email) || !email.matches(REGEX_EMAIL_PATTERN)) { 
 			return badRequest("email");
 		}
 		
@@ -78,6 +76,13 @@ public class AuthController extends BaseController {
 		} else {
 			return error(500, "Cannot create token");
 		}
+	}
+	
+	@DeleteMapping("/signout")
+	public ResponseEntity<Response> signout() {
+		// TODO delete user session
+		// currently doing nothing here
+		return success();
 	}
 	
 }

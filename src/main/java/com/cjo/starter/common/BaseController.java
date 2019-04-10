@@ -22,6 +22,10 @@ import com.cjo.starter.common.domain.Response;
 @Transactional
 public class BaseController {
 
+	public ResponseEntity<Response> success() {
+		return new ResponseEntity<Response>(new Response(0, ""), HttpStatus.OK);
+	}
+	
 	public ResponseEntity<Response> success(Object data) {
 		return new ResponseEntity<Response>(new Response(0, "", data), HttpStatus.OK);
 	}
