@@ -1,5 +1,8 @@
 package com.cjo.starter.auth.model;
 
+import java.io.Serializable;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,21 +10,45 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="TB_USER")
-public class User {
+@Table(name = "TB_USER")
+public class User implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9092566292877732573L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_USER_ID")
+	@SequenceGenerator(name = "SEQ_USER_ID", sequenceName = "SEQ_USER_ID")
+	@Column(name = "ID")
 	private int id;
+	
+	@Column(name = "EMAIL", nullable = false, unique = true)
 	private String email;
+
+	@Column(name = "PASSWORD", nullable = false, length = 100)
 	private String password;
-	
+
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private UserRole userRole;
+
+	@OneToMany
+	@JoinTable(name = "TB_USER_AUTHORITY", 
+		joinColumns = @JoinColumn(name = "USER_ID"),
+		inverseJoinColumns = @JoinColumn(name = "AUTHORITY_ID"))
+	private Set<Authority> authorities;
 	
+	@Transient
 	private String token;
 	
 	public User() {
@@ -33,10 +60,6 @@ public class User {
 		this.password = password;
 	}
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_user_id")
-	@SequenceGenerator(name="seq_user_id", sequenceName="seq_user_id")
-	@Column(name="id")
 	public int getId() {
 		return id;
 	}
@@ -45,7 +68,6 @@ public class User {
 		this.id = id;
 	}
 
-	@Column(name="email", nullable=false, unique=true)
 	public String getEmail() {
 		return email;
 	}
@@ -54,7 +76,6 @@ public class User {
 		this.email = email;
 	}
 
-	@Column(name="password", nullable=false, length=100)
 	public String getPassword() {
 		return password;
 	}
@@ -63,7 +84,6 @@ public class User {
 		this.password = password;
 	}
 	
-	@Transient
 	public String getToken() {
 		return token;
 	}
@@ -72,13 +92,20 @@ public class User {
 		this.token = token;
 	}
 
-	@OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	public UserRole getUserRole() {
 		return userRole;
 	}
 
 	public void setUserRole(UserRole userRole) {
 		this.userRole = userRole;
+	}
+
+	public Set<Authority> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(Set<Authority> authorities) {
+		this.authorities = authorities;
 	}
 	
 }

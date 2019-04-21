@@ -44,6 +44,9 @@ dependencies {
 	implementation 'com.hazelcast:hazelcast:3.11.2'
 	implementation 'com.hazelcast:hazelcast-spring:3.11.2'
 	
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.17'
+	implementation 'javax.servlet:jstl:1.2'
+	
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'

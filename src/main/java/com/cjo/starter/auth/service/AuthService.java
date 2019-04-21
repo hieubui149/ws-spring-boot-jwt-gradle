@@ -64,12 +64,12 @@ public class AuthService extends BaseService {
 	public String signin(final String email, final String password) throws UserException {
 		List<User> users = userRepository.findByEmail(email);
 		if (users.isEmpty()) {
-			throw new UserException("Username or password does not match");
+			throw new UserException("MSG_AUTH_0003");
 		}
 		
 		User user = users.get(0);
 		if (!passwordEncodingService.check(password, user.getPassword())) {
-			throw new UserException("Username or password does not match");
+			throw new UserException("MSG_AUTH_0003");
 		}
 		
 		String token = prepareJwtToken(email, Role.fromString(user.getUserRole().getRoleName()));

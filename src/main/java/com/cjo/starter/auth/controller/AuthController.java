@@ -31,12 +31,12 @@ import com.cjo.starter.common.domain.Response;
 public class AuthController extends BaseController {
 
 //	private static final Logger LOGGER = LogManager.getLogger(AuthController.class);
-	private static final String REGEX_EMAIL_PATTERN = "^[a-zA-Z0-9.]*\\\\@[a-zA-Z0-9]*\\\\.[a-z]*$";
+	private static final String REGEX_EMAIL_PATTERN = "^[a-zA-Z0-9.]*@[a-zA-Z0-9]*.[a-z]*$";
 	
 	@Autowired
 	private AuthService authService;
 	
-	@PostMapping("/login")
+	@PostMapping("/signin")
 	public ResponseEntity<Response> postLogin(@RequestBody Map<String, String> body) {
 		final String email = body.get("email");
 		final String password = body.get("password");

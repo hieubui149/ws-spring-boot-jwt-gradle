@@ -1,5 +1,7 @@
 package com.cjo.starter.auth.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,10 +12,21 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="TB_USER_ROLE")
-public class UserRole {
+public class UserRole implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7558959590688859065L;
+
+	@Id
 	private int userId;
+
+	@Column(name="role", nullable=false)
 	private String roleName;
+	
+	@OneToOne(fetch=FetchType.LAZY)
+	@MapsId
 	private User user;
 	
 	public UserRole() {
@@ -24,7 +37,6 @@ public class UserRole {
 		this.roleName = roleName;
 	}
 
-	@Id
 	public int getUserId() {
 		return userId;
 	}
@@ -33,8 +45,6 @@ public class UserRole {
 		this.userId = userId;
 	}
 	
-	@OneToOne(fetch=FetchType.LAZY)
-	@MapsId
 	public User getUser() {
 		return user;
 	}
@@ -43,7 +53,6 @@ public class UserRole {
 		this.user = user;
 	}
 
-	@Column(name="role", nullable=false)
 	public String getRoleName() {
 		return roleName;
 	}
