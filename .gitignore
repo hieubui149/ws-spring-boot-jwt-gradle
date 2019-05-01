@@ -4,8 +4,11 @@
 /dist/
 !gradle/wrapper/gradle-wrapper.jar
 
+### INTELLIJ ###
+/.idea/
+/.out/
+
 ### ECLIPSE ###
 .classpath
 .project
 .settings
-
