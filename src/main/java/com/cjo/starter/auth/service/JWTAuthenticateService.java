@@ -59,15 +59,15 @@ public class JWTAuthenticateService extends BaseService {
 		}
 	}
 
-	public final Optional<String> createToken(final String email, JWTPayload payload) {
+	protected final Optional<String> createToken(final String email, JWTPayload payload) {
 		String generatedToken = null;
 		try {
 			Builder builder = JWT.create().withIssuer(jwtConfig.getIssuer());
 			JWTClaimer.claim(payload, builder);
-			generatedToken = builder.sign(jwtConfig.getAlgorithm());			
+			return Optional.ofNullable(builder.sign(jwtConfig.getAlgorithm()));
 		} catch (JWTCreationException exception) {
+			return Optional.ofNullable(null);
 		}
-		return Optional.ofNullable(generatedToken);
 	}
 
 	public final Authentication verifyToken(final String token) {
@@ -82,10 +82,10 @@ public class JWTAuthenticateService extends BaseService {
 	private AbstractRoleAuthenticatedToken getAuthenticationToken(DecodedJWT jwt, final String token) {
 		String id = jwt.getClaim(ClaimContent.email.name()).asString();
 		String role = jwt.getClaim(ClaimContent.role.name()).asString();
-		return getAutenticationTokenFactory(role).getAuthenticatedToken(id, token);
+		return getAuthenticationTokenFactory(role).getAuthenticatedToken(id, token);
 	}
 
-	private IRoleAuthenticatedTokenFactory getAutenticationTokenFactory(final String role) {
+	private IRoleAuthenticatedTokenFactory getAuthenticationTokenFactory(final String role) {
 		return roleAuthenticatedTokenFactories.get(role);
 	}
 

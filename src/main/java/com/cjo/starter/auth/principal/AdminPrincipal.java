@@ -14,7 +14,7 @@ public class AdminPrincipal implements IPrincipal {
 	
 	@Override
 	public String[] getRoleNames() {
-		return new String[] {Role.ROLE_ADMIN.role};
+		return new String[] {Role.ROLE_ADMIN.role, Role.ROLE_USER.role};
 	}
 
 }
