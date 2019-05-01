@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("${url.prefix}/view")
-public class TestViewController {
+public class JSPViewTestController {
 
 	@RequestMapping("/welcome")
 	public ModelAndView welcomePage() {
