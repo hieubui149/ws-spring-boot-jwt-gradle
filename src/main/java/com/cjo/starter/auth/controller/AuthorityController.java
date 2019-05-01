@@ -20,11 +20,11 @@ import com.cjo.starter.common.domain.Response;
 
 /**
  * @author Tomas
- * @date Apr 20, 2019
+ * @since Apr 20, 2019
  *
  */
 @RestController
-@RequestMapping("/mpos/v1/authority")
+@RequestMapping("${url.prefix}/v1/authority")
 public class AuthorityController extends BaseController {
 
 	@Autowired

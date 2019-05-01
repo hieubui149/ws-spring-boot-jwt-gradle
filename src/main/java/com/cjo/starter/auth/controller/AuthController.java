@@ -5,11 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.cjo.starter.auth.service.AuthService;
 import com.cjo.starter.common.BaseController;
@@ -27,7 +23,7 @@ import com.cjo.starter.common.domain.Response;
  *
  */
 @RestController
-@RequestMapping("mpos/v1/auth")
+@RequestMapping("${url.prefix}/v1/auth")
 public class AuthController extends BaseController {
 
 //	private static final Logger LOGGER = LogManager.getLogger(AuthController.class);
@@ -82,7 +78,8 @@ public class AuthController extends BaseController {
 	public ResponseEntity<Response> signout() {
 		// TODO delete user session
 		// currently doing nothing here
+		System.out.println("sign out successfully");
 		return success();
 	}
-	
+
 }

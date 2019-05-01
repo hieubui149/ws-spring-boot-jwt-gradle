@@ -11,6 +11,6 @@ package com.cjo.starter.common;
  * @since Feb 20, 2019
  *
  */
-public class BaseService {
+public abstract class BaseService {
 
 }

@@ -2,6 +2,7 @@ package com.cjo.starter.auth.service;
 
 import java.util.List;
 
+import com.cjo.starter.auth.repository.AuthRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +40,9 @@ public class AuthService extends BaseService {
 
 	@Autowired
 	private PasswordEncodingService passwordEncodingService;
+
+	@Autowired
+	private AuthRepository authRepository;
 
 	private String prepareJwtToken(final String email, final Role role) {
 		JWTPayload payload = new JWTPayload().setEmail(email).setRole(role.role);

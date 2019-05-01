@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("${url.prefix}/test")
 public class TestController {
 
 	@RequestMapping("/welcome")

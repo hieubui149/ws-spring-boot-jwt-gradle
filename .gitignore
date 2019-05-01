@@ -6,7 +6,7 @@
 
 ### INTELLIJ ###
 /.idea/
-/.out/
+/out/
 
 ### ECLIPSE ###
 .classpath

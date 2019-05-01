@@ -54,7 +54,7 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/mpos/v1/auth/signup", "/mpos/v1/auth/login");
+		web.ignoring().antMatchers("/mpos/v1/auth/signup", "/mpos/v1/auth/signin");
 	}
 	
 	@Autowired
