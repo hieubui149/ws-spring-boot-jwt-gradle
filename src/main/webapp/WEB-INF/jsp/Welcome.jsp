@@ -16,33 +16,29 @@
     <div class="container body">
         <div class="main_container">
 
-            <%@ include file="../include/SideNavigationBar.jspf" %>
-            <%@ include file="../include/TopNavigationBar.jspf" %>
+            <%@ include file="../include/side-navigation-bar.jspf" %>
+            <%@ include file="../include/top-navigation-bar.jspf" %>
 
             <!-- multiple tabs -->
             <div class="right_col">
-
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist" id="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                            <span class="count_top"><i class="fa fa-home"></i></span>
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content" id="tab_contents">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <iframe frameborder="0" class="iframe_container" style="width: 100%; height: 100%; border: margin: 0px;"
+                        id="framex" name="framex" scrolling="yes" src="/index"></iframe>
+                    </div>
                 </div>
-
             </div>
             <!-- /multiple tabs -->
-
-            <!-- index -->
-            <div class="right_col">
-                <iframe frameborder="0"
-                    class="iframe_container"
-                    style="width: 100%; height: 100%; border: margin: 0px;"
-                    id="framex" name="framex" scrolling="yes"
-                    src="index">
-                </iframe>
-            </div>
-            <!-- /index -->
 
             <!-- footer content -->
             <%@ include file="../include/footer.jspf" %>

@@ -38,3 +38,6 @@
 
 <!-- Custom Theme Scripts -->
 <script src="../js/custom.js"></script>
+
+<!-- Multiple Tab Bar Scripts -->
+<script src="../js/multiple-tab-bar.js"></script>
