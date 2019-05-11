@@ -48,7 +48,7 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
     $RIGHT_COL = $('.right_col'),
     $NAV_MENU = $('.nav_menu'),
     $FOOTER = $('footer');
-
+    $IFRAME_WRAPPER = $('.iframe_container');
 	
 	
 // Sidebar
@@ -57,6 +57,7 @@ function init_sidebar() {
 var setContentHeight = function () {
 	// reset height
 	$RIGHT_COL.css('min-height', $(window).height());
+	$IFRAME_WRAPPER.css('min-height', $(window).height());
 
 	var bodyHeight = $BODY.outerHeight(),
 		footerHeight = $BODY.hasClass('footer_fixed') ? -10 : $FOOTER.height(),
@@ -67,6 +68,7 @@ var setContentHeight = function () {
 	contentHeight -= $NAV_MENU.height() + footerHeight;
 
 	$RIGHT_COL.css('min-height', contentHeight);
+	$IFRAME_WRAPPER.css('min-height', contentHeight);
 };
 
   $SIDEBAR_MENU.find('a').on('click', function(ev) {

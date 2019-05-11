@@ -19,8 +19,29 @@
             <%@ include file="../include/SideNavigationBar.jspf" %>
             <%@ include file="../include/TopNavigationBar.jspf" %>
 
-            <!-- index -->
+            <!-- multiple tabs -->
+            <div class="right_col">
 
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist" id="tablist">
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content" id="tab_contents">
+                </div>
+
+            </div>
+            <!-- /multiple tabs -->
+
+            <!-- index -->
+            <div class="right_col">
+                <iframe frameborder="0"
+                    class="iframe_container"
+                    style="width: 100%; height: 100%; border: margin: 0px;"
+                    id="framex" name="framex" scrolling="yes"
+                    src="index">
+                </iframe>
+            </div>
             <!-- /index -->
 
             <!-- footer content -->
