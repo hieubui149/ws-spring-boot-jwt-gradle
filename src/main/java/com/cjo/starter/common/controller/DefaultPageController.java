@@ -2,6 +2,7 @@ package com.cjo.starter.common.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @author hieubui
@@ -10,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DefaultPageController {
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getDefaultPage() {
         return "Welcome";
     }
 
-    @RequestMapping("/index")
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String getMainPage() {
         return "Index";
     }

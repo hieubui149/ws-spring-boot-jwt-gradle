@@ -1,5 +1,7 @@
 package com.cjo.starter.common;
 
+import com.cjo.starter.common.domain.BadRequestResponse;
+import com.cjo.starter.common.domain.ErrorResponse;
 import com.cjo.starter.common.domain.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -25,6 +27,7 @@ import java.util.Locale;
 public class BaseController {
 
     private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
+
     @Autowired
     private MessageSource messageSource;
 
@@ -44,19 +47,22 @@ public class BaseController {
         return new ResponseEntity<Response>(new Response(0, "", data), HttpStatus.OK);
     }
 
+    public ResponseEntity<Response> success(Response response) {
+        return new ResponseEntity<Response>(response, HttpStatus.OK);
+    }
+
     public ResponseEntity<Response> error(final int code, final String messageCode) {
-        return new ResponseEntity<Response>(new Response(code, getMessage(messageCode), null),
+        return new ResponseEntity<Response>(new ErrorResponse(code, getMessage(messageCode)),
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     public ResponseEntity<Response> badRequest(final String messageCode) {
-        return new ResponseEntity<Response>(new Response(HttpStatus.BAD_REQUEST.value(), getMessage(messageCode), null),
+        return new ResponseEntity<Response>(new BadRequestResponse(getMessage(messageCode), null),
                 HttpStatus.BAD_REQUEST);
     }
 
     public ResponseEntity<Response> badRequest(final String... messages) {
-        return new ResponseEntity<Response>(
-                new Response(HttpStatus.BAD_REQUEST.value(), Arrays.toString(messages), null), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<Response>(new BadRequestResponse("", Arrays.toString(messages)), HttpStatus.BAD_REQUEST);
     }
 
 }

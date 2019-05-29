@@ -11,19 +11,28 @@ package com.cjo.starter.common.domain;
  * @since Feb 20, 2019
  *
  */
-public class Response {
+public class Response<T> {
 	
 	public final int code;
 	public final String message;
-	public final Object data;
+	protected T data;
 	
 	public Response(final int code, final String message) {
 		this(code, message, null);
 	}
 	
-	public Response(final int code, final String message, Object data) {
+	public Response(final int code, final String message, T data) {
 		this.code = code;
 		this.message = message;
 		this.data = data;
 	}
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
+
 }
